@@ -23,6 +23,8 @@ Get-ChildItem -LiteralPath $Original_Folder | ForEach-Object {
     Wait-AU3Win -Title "$Converted_Filename"
     Move-AU3Win -Title "$Converted_Filename" -X 0    -Y 10 -Width 1800 -Height 1030
 
+    Show-AU3WinActivate "Windows PowerShell"
+    
     Pause
 
     Close-AU3Win -Title "$Original_Filename"

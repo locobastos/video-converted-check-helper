@@ -36,3 +36,9 @@ Imagine you have converted many video files with an automated script (batch, bas
 # About
 My little script open both video files at specific timestamp using MPC-HC to let you checking if the content is the same.
 Each time you press Enter to continue, it will close the current video files then open the new ones.
+
+# Requirement
+* MPC-HC : https://mpc-hc.org/downloads/
+* AutoIt : https://www.autoitscript.com/site/autoit/downloads/
+
+You can use both intaller or portable mode of MPC-HC & AutoIT. You'll have to modify the script to set the requirements paths.

@@ -49,6 +49,7 @@ You can use both intaller or portable mode of MPC-HC & AutoIT.
 # Usage
 You'll have to customize almost the entire script:
 
+    Import-Module        = Set the "AutoItX.psd1" path.
     $MPC                 = Set the mpc-hc64.exe or mpc-hc.exe path.
     $Original_Folder     = Set the location of the original videos.
     $Converted_Folder    = Set the location of the converted videos.

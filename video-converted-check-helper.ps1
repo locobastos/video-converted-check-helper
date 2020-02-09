@@ -14,21 +14,31 @@ Get-ChildItem -LiteralPath $Original_Folder | ForEach-Object {
     $Original_Filename = "GH01$($Original_Numbering).mp4"
     $Converted_Filename = "MyVacations$($Converted_Numbering).mp4"
 
-    &$MPC "$($Original_Folder)\$Original_Filename" /startpos $Timestamp
-    &$MPC "$($Converted_Folder)\$Converted_Filename" /startpos $Timestamp
+    if ([System.IO.File]::Exists("$($Original_Folder)\$Original_Filename")) {
+        if ([System.IO.File]::Exists("$($Converted_Folder)\$Converted_Filename")) {
+            &$MPC "$($Original_Folder)\$Original_Filename" /startpos $Timestamp
+            &$MPC "$($Converted_Folder)\$Converted_Filename" /startpos $Timestamp
 
-    Wait-AU3Win -Title "$Original_Filename"
-    Move-AU3Win -Title "$Original_Filename" -X 1930 -Y 10 -Width 1800 -Height 1030
+            Wait-AU3Win -Title "$Original_Filename"
+            Move-AU3Win -Title "$Original_Filename" -X 1930 -Y 10 -Width 1800 -Height 1030
 
-    Wait-AU3Win -Title "$Converted_Filename"
-    Move-AU3Win -Title "$Converted_Filename" -X 0 -Y 10 -Width 1800 -Height 1030
+            Wait-AU3Win -Title "$Converted_Filename"
+            Move-AU3Win -Title "$Converted_Filename" -X 0 -Y 10 -Width 1800 -Height 1030
 
-    Show-AU3WinActivate "Windows PowerShell"
-    
-    Pause
+            Show-AU3WinActivate "Windows PowerShell"
 
-    Close-AU3Win -Title "$Original_Filename"
-    Close-AU3Win -Title "$Converted_Filename"
-    
-    $LoopIteration += 1
+            Pause
+
+            Close-AU3Win -Title "$Original_Filename"
+            Close-AU3Win -Title "$Converted_Filename"
+
+            $LoopIteration += 1
+        } else {
+            Write-Host "The file: $($Original_Folder)\$Original_Filename does not exist."
+            Exit
+        }
+    } else {
+        Write-Host "The file: $($Converted_Folder)\$Converted_Filename does not exist."
+        Exit
+    }
 }
